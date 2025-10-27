@@ -1,0 +1,80 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "gestor-tareas-lista-enlazada"
+version = "1.0.0"
+description = "Gestor de tareas educativo implementando lista enlazada y patrón MVC"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Estudiante", email = "estudiante@ejemplo.com"}
+]
+keywords = ["educativo", "estructuras-datos", "lista-enlazada", "mvc", "flask"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Education",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Topic :: Education",
+    "Topic :: Software Development :: Libraries :: Python Modules"
+]
+dependencies = [
+    "Flask>=2.3.0",
+    "Werkzeug>=2.3.0",
+    "Jinja2>=3.1.0"
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-flask>=1.2.0",
+    "black>=23.0.0",
+    "flake8>=6.0.0"
+]
+
+[project.urls]
+Homepage = "https://github.com/usuario/gestor-tareas-lista-enlazada"
+Repository = "https://github.com/usuario/gestor-tareas-lista-enlazada.git"
+Documentation = "https://github.com/usuario/gestor-tareas-lista-enlazada#readme"
+
+[project.scripts]
+gestor-consola = "src.main:main"
+gestor-web = "src.mi_paquete.app:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-dir]
+"" = "src"
+
+[tool.black]
+line-length = 88
+target-version = ['py38']
+include = '\.pyi?$'
+extend-exclude = '''
+/(
+  # directories
+  \.eggs
+  | \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | build
+  | dist
+)/
+'''
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = ["test_*.py"]
+python_classes = ["Test*"]
+python_functions = ["test_*"]
+addopts = "-v --tb=short"

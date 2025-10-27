@@ -30,8 +30,9 @@ class ControladorApp:
 
             if opcion == '1':
                 descripcion = input("📝 Ingresa la descripción de la nueva tarea: ")
+                descripcion_detallada = input("📋 Ingresa detalles adicionales (opcional, presiona Enter para omitir): ")
                 # Llama al método del Modelo
-                self.lista_tareas.agregar_tarea(descripcion)
+                self.lista_tareas.agregar_tarea(descripcion, descripcion_detallada)
 
             elif opcion == '2':
                 # Llama al método del Modelo

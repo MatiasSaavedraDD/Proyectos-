@@ -24,7 +24,10 @@ def index():
         # Creamos un diccionario para cada tarea
         tareas_para_web.append({
             'descripcion': actual.descripcion,
-            'estado': actual.estado
+            'descripcion_detallada': actual.descripcion_detallada,
+            'estado': actual.estado,
+            'fecha_creacion': actual.obtener_fecha_formateada(),
+            'fecha_corta': actual.obtener_fecha_corta()
         })
         actual = actual.siguiente
         
@@ -38,10 +41,11 @@ def agregar():
     if request.method == 'POST':
         # 1. El Controlador extrae los datos de la petición (Vista)
         descripcion = request.form.get('descripcion')
+        descripcion_detallada = request.form.get('descripcion_detallada', '')
         
         if descripcion:
             # 2. El Controlador llama al método del Modelo
-            lista_tareas.agregar_tarea(descripcion)
+            lista_tareas.agregar_tarea(descripcion, descripcion_detallada)
             
     # 3. Redireccionar a la página principal para ver el cambio
     return redirect(url_for('index'))
@@ -70,6 +74,6 @@ def eliminar(descripcion_tarea):
 # Este es el punto de inicio de la aplicación Flask
 if __name__ == '__main__':
     # Agregamos algunas tareas de prueba para que la lista no esté vacía al inicio
-    lista_tareas.agregar_tarea("Estudiar Listas Enlazadas")
-    lista_tareas.agregar_tarea("Preparar el proyecto MVC")
+    lista_tareas.agregar_tarea("Estudiar Listas Enlazadas", "Revisar conceptos de nodos, punteros y operaciones CRUD")
+    lista_tareas.agregar_tarea("Preparar el proyecto MVC", "Implementar Modelo, Vista y Controlador con Flask")
     app.run(debug=True)
